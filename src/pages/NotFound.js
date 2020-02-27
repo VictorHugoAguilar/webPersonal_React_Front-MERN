@@ -1,10 +1,16 @@
 import React from 'react';
+import { Result, Button } from 'antd';
 
 export default function NotFound() {
     return (
-        <div>
-            <h1>Not Found. </h1>
-            <h2>Error 404</h2>
-        </div>
+        <Result
+        status="404"
+        title="404"
+        subTitle="Sorry, the page you visited does not exist."
+        extra={<Button type="primary">Back Home</Button>}
+      />
     );
 }
+
+
+

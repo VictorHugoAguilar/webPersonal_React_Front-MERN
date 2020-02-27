@@ -1,8 +1,5 @@
 @import '../../../scss/variables';
 .menu-top {
-    width: 100%;
-    display: flex;
-    background-color: gray;
     button {
         background-color: transparent;
         color: $font-light;
@@ -16,21 +13,20 @@
         color: $font-light;
     }
     &__left {
-        padding: 4px;
         &-logo {
             width: 200px;
-            padding: 0 10px;
+            padding: 0 5px;
         }
         &__icon {
-            padding: 5px;
+            padding: 0px;
         }
     }
     &__right {
         position: absolute;
         right: 10px;
-        top: 20px;
+        top: 0px;
         &__icon {
-            padding: 10px;
+            padding: 0;
         }
     }
 }
