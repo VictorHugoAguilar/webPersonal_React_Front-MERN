@@ -1,14 +1,15 @@
 $defaultFontSize: 16px;
 //
 $primary-color: #0098d3;
-$primary-color-hover: #0280b3;
+$primary-color-hover: #0173a0;
 //
 $menu-color: #252527;
 //
 $font-light: #fff;
 $font-grey-light: #e8e8e8;
 $font-grey: #808080;
-$font-dark-light: "";
+$font-grey-dark: #686666;
+$font-dark-light: #686666;
 $font-dark: #000;
 //
 $border-light: #fff;
@@ -27,8 +28,8 @@ $background-dark: #000;
 $background-error: #ff00001f;
 $background-success: #84b84c1f;
 //
-$success: #84b84c;
-$error: #f00;
+$success: #a3dc67;
+$error: rgb(227, 97, 97);
 $warning: orange;
 // Responsive down size
 $media-breackpoint-down-xs: 413.98px;
