@@ -1,7 +1,10 @@
 import React from 'react';
 import { Layout, Tabs } from 'antd';
+// eslint-disable-next-line
 import { Redirect } from 'react-router-dom';
 import Logo from '../../../assets/img/png/logo.png';
+
+import { getAccessTokenApi} from '../../../api/auth'
 
 // Componentes
 import RegisterForm from '../RegisterForm';
@@ -13,6 +16,10 @@ export default function SignIn() {
 
     const { Content } = Layout;
     const { TabPane } = Tabs;
+
+    if(getAccessTokenApi()){
+        return <Redirect to="/admin"></Redirect>
+    }
 
     return (
         <Layout className="sign-in" >

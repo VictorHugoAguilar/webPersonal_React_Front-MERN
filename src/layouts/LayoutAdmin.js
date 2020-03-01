@@ -2,6 +2,8 @@ import React, { useState, Fragment } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
 
+import useAuth from '../hooks/useAuth';
+
 import MenuTop from '../components/Admin/MenuTop';
 import MenuSider from '../components/Admin/MenuSider';
 import AdminSignIn from '../pages/Admin/SignIn/SignIn';
@@ -13,11 +15,9 @@ export default function LayoutAdmin(props) {
     const { routes } = props;
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const { Header, Footer, Content } = Layout;
+    const { user, isLoading } = useAuth();
 
-    const user = null;
-
-    if (!user) {
-
+    if (!user && !isLoading) {
         return (
             <Fragment>
                 <Route path='/admin/login' component={AdminSignIn} />
@@ -26,20 +26,24 @@ export default function LayoutAdmin(props) {
         );
     }
 
-    return (
-        <Layout>
-            <MenuSider menuCollapsed={menuCollapsed} />
-            <Layout className="layout-admin">
-                <Header className="layout-admin__header" >
-                    <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
-                </Header>
-                <Content className="layout-admin__content" > Rutas
+    if (user && !isLoading) {
+        return (
+            <Layout>
+                <MenuSider menuCollapsed={menuCollapsed} />
+                <Layout className="layout-admin">
+                    <Header className="layout-admin__header" >
+                        <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
+                    </Header>
+                    <Content className="layout-admin__content" > Rutas
                     <LoadRutes routes={routes} />
-                </Content>
-                <Footer className="layout-admin__footer" > Victor Hugo Aguilar © </Footer>
+                    </Content>
+                    <Footer className="layout-admin__footer" > Victor Hugo Aguilar © </Footer>
+                </Layout>
             </Layout>
-        </Layout>
-    );
+        );
+    }
+
+    return null;
 }
 
 function LoadRutes(props) {

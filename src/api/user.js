@@ -29,3 +29,28 @@ export function signUpApi(data) {
             return error;
         })
 }
+
+export function signInApi(data) {
+    const url = `${basePath}${apiVersion}/sign-in`;
+    const params = {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    return fetch(url, params)
+        .then(response => { 
+            // console.log(response);
+            return response.json();
+         })
+         .then(result => {
+            console.log(result)
+            return result;
+         })
+         .catch(err => {
+             console.error(err);
+             return err.message;
+         })
+}

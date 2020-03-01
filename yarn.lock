@@ -2511,10 +2511,10 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.26.11:
-  version "3.26.11"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.11.tgz#28d17b8c664251b879e25ad22b3102b1d04c5a10"
-  integrity sha512-LJZW/XWfv7u5L0mnctmwJEIRuT2rVi5A9SR4JE1vfMwjfJQT6n8bphcytElYXxCHr9xjQSONhuGLgeMz6AVoWQ==
+antd@^3.26.12:
+  version "3.26.12"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.26.12.tgz#2f075670780ac0490b2945d8bca883edcd93158c"
+  integrity sha512-aXiRDDpDx1jH/gKJDE2dgZPT1C7qurOZ1OSt9RklQT2K6CFlveF8HJY7Jz1/xHikXA+kmy6kr/OACJiaxBFRkA==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -7292,6 +7292,11 @@ jsx-ast-utils@^2.2.1, jsx-ast-utils@^2.2.3:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -9596,6 +9601,11 @@ prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
+
+prettier@^1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
+  integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
 
 pretty-bytes@^5.1.0:
   version "5.3.0"
