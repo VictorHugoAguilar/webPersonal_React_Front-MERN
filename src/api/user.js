@@ -41,21 +41,21 @@ export function signInApi(data) {
     };
 
     return fetch(url, params)
-        .then(response => { 
+        .then(response => {
             // console.log(response);
             return response.json();
-         })
-         .then(result => {
+        })
+        .then(result => {
             console.log(result)
             return result;
-         })
-         .catch(err => {
-             console.error(err);
-             return err.message;
-         })
+        })
+        .catch(err => {
+            console.error(err);
+            return err.message;
+        })
 }
 
-export function getUsersApi( token ){
+export function getUsersApi(token) {
     const url = `${basePath}${apiVersion}/users`;
 
     const params = {
@@ -67,10 +67,10 @@ export function getUsersApi( token ){
     };
 
     return fetch(url, params)
-        .then( response => {
+        .then(response => {
             return response.json();
         })
-        .then( result => {
+        .then(result => {
             return result;
         })
         .catch(err => {
@@ -78,7 +78,7 @@ export function getUsersApi( token ){
         });
 }
 
-export function getUsersActiveApi( token, status ){
+export function getUsersActiveApi(token, status) {
     const url = `${basePath}${apiVersion}/users-active?active=${status}`;
 
     const params = {
@@ -90,10 +90,69 @@ export function getUsersActiveApi( token, status ){
     };
 
     return fetch(url, params)
-        .then( response => {
+        .then(response => {
             return response.json();
         })
-        .then( result => {
+        .then(result => {
+            return result;
+        })
+        .catch(err => {
+            return err.message;
+        });
+}
+
+export function uploadAvatarApi(token, avatar, userId) {
+    const url = `${basePath}${apiVersion}/upload-avatar/${userId}`;
+    const formData = new FormData();
+    formData.append('avatar', avatar, avatar.name);
+    const params = {
+        method: "PUT",
+        headers: {
+            Authorization: token
+        },
+        body: formData
+    }
+
+    return fetch(url, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {
+            return result;
+        })
+        .catch(err => {
+            return err.message;
+        });
+}
+
+export function getAvatarApi(avatarName) {
+    const url = `${basePath}${apiVersion}/get-avatar/${avatarName}`;
+
+    return fetch(url)
+        .then(response => {
+            return response.url;
+        })
+        .catch(err => {
+            return err.message;
+        });
+}
+
+export function updateUserApi(token, user, userId) {
+    const url = `${basePath}${apiVersion}/update-user/${userId}`;
+    const params = {
+        method: "PUT",
+        body: JSON.stringify(user),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        }
+    }
+
+    return fetch(url, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {
             return result;
         })
         .catch(err => {

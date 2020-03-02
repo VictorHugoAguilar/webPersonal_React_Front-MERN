@@ -34,8 +34,8 @@ export default function LayoutAdmin(props) {
                     <Header className="layout-admin__header" >
                         <MenuTop menuCollapsed={menuCollapsed} setMenuCollapsed={setMenuCollapsed} />
                     </Header>
-                    <Content className="layout-admin__content" > Rutas
-                    <LoadRutes routes={routes} />
+                    <Content className="layout-admin__content" >
+                        <LoadRutes routes={routes} />
                     </Content>
                     <Footer className="layout-admin__footer" > Victor Hugo Aguilar © </Footer>
                 </Layout>

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { getAccessTokenApi } from '../../../api/auth';
-import { getUsersActiveApi } from '../../../api/user'
+import { getUsersActiveApi } from '../../../api/user';
+
+import ListUsers from '../../../components/Admin/Users/ListUsers';
 
 import './Users.scss';
 
@@ -9,17 +11,22 @@ export default function Users() {
     const [usersActive, setUsersActive] = useState([]);
     const [usersInactive, setUsersInactive] = useState([]);
     const token = getAccessTokenApi();
+    const [reloadUser, setReloadUser] = useState(false);
 
     useEffect(() => {
         getUsersActiveApi(token, true)
             .then(response => {
-                setUsersActive(response);
+                setUsersActive(response.users);
             });
         getUsersActiveApi(token, false)
             .then(response => {
-                setUsersInactive(response);
+                setUsersInactive(response.users);
             });
-    }, [token]);
+        setReloadUser(false);
+    }, [token, reloadUser]);
 
-    return (<div>Lista de usuarios</div>)
+    return (<div className="users">
+        <ListUsers usersActive={usersActive} usersInactive={usersInactive} setReloadUser={setReloadUser} />
+    </div>
+    );
 }
