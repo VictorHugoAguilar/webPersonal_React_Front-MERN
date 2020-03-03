@@ -16,7 +16,9 @@ export default function EditUserForm(props) {
         lastname: user.lastname,
         email: user.email,
         role: user.role,
-        avatar: user.avatar
+        avatar: user.avatar,
+        password: user.password,
+        repeatPassword: user.repeatPassword
     });
     const [avatar, setAvatar] = useState("");
 
@@ -26,15 +28,17 @@ export default function EditUserForm(props) {
             lastname: user.lastname,
             email: user.email,
             role: user.role,
-            avatar: user.avatar
-        })
+            avatar: user.avatar,
+            password: '',
+            repeatPassword: ''
+        });
     }, [user]);
 
     useEffect(() => {
         if (user.avatar) {
             getAvatarApi(user.avatar).then(response => {
                 setAvatar(response);
-            })
+            });
         } else {
             setAvatar(null);
         }
@@ -59,8 +63,10 @@ export default function EditUserForm(props) {
                 notification['error']({
                     message: 'Las contraseñas tienen que ser iguales.'
                 });
+                return;
+            }else{
+                delete userUpdate.repeatPassword;
             }
-            return;
         }
 
         if (!userUpdate.name || !userUpdate.lastname || !userUpdate.email) {
@@ -217,11 +223,11 @@ function EditForm(props) {
             <Row gutter={24}>
                 <Col span={12}>
                     <Form.Item>
-
                         <Input
                             prefix={<Icon type="lock" />}
                             placeholder="Password"
                             type="password"
+                            value={userData.password}
                             onChange={e => setUserData({ ...userData, password: e.target.value })}
                         />
                     </Form.Item>
@@ -233,6 +239,7 @@ function EditForm(props) {
                             prefix={<Icon type="lock" />}
                             placeholder="Repetir Password"
                             type="password"
+                            value={userData.repeatPassword}
                             onChange={e => setUserData({ ...userData, repeatPassword: e.target.value })}
                         />
                     </Form.Item>
