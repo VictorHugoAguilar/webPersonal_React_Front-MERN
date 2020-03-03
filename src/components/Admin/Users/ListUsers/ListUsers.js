@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
-
-import { Switch, List, Avatar, Button, Icon, notification } from 'antd';
+import {
+    Switch,
+    List,
+    Avatar,
+    Button,
+    Icon,
+    notification,
+    Modal as ModalAntd
+} from 'antd';
 
 import noAvatar from '../../../../assets/img/png/noPicture.png';
 import Modal from '../../../Modal';
-
 import EditUserForm from '../EditUserForm';
 
-import { getAvatarApi, activateUserApi } from '../../../../api/user';
+// Importamos los servicios
+import { getAvatarApi, activateUserApi, deleteUserApi } from '../../../../api/user';
 import { getAccessTokenApi } from '../../../../api/auth';
 
 import './ListUsers.scss';
+
+const { confirm } = ModalAntd;
 
 export default function ListUsers(props) {
     const { usersActive, usersInactive, setReloadUser } = props;
@@ -121,6 +130,32 @@ function UserActive(props) {
             });
     }
 
+    const showDeleteConfirm = () => {
+        const accessToken = getAccessTokenApi();
+
+        confirm({
+            title: "Eliminando usuario",
+            content: `Estas seguro de eliminar ${user.email} ?`,
+            okText: 'Eliminar',
+            okType: 'danger',
+            cancelText: 'Cancelar',
+            onOk() {
+                deleteUserApi(accessToken, user._id)
+                    .then(response => {
+                        notification['success']({
+                            message: response
+                        });
+                        setReloadUser(true);
+                    })
+                    .catch(error => {
+                        notification['error']({
+                            message: error.message
+                        });
+                    });
+            }
+        });
+    }
+
     return (
         <List.Item
             actions={[
@@ -138,7 +173,7 @@ function UserActive(props) {
                 </Button>,
                 <Button
                     type="danger"
-                    onClick={() => console.log("borrar usuario")}
+                    onClick={showDeleteConfirm}
                 >
                     <Icon type="delete" />
                 </Button>
@@ -200,6 +235,32 @@ function UserInactive(props) {
             });
     }
 
+    const showDeleteConfirm = () => {
+        const accessToken = getAccessTokenApi();
+
+        confirm({
+            title: "Eliminando usuario",
+            content: `Estas seguro de eliminar ${user.email} ?`,
+            okText: 'Eliminar',
+            okType: 'danger',
+            cancelText: 'Cancelar',
+            onOk() {
+                deleteUserApi(accessToken, user._id)
+                    .then(response => {
+                        notification['success']({
+                            message: response
+                        });
+                        setReloadUser(true);
+                    })
+                    .catch(error => {
+                        notification['error']({
+                            message: error.message
+                        });
+                    });
+            }
+        });
+    }
+
     return (
         <List.Item
             actions={[
@@ -211,7 +272,7 @@ function UserInactive(props) {
                 </Button>,
                 <Button
                     type="danger"
-                    onClick={() => console.log("borrar usuario")}
+                    onClick={showDeleteConfirm}
                 >
                     <Icon type="delete" />
                 </Button>
