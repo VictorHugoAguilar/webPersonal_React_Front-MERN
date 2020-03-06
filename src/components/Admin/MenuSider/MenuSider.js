@@ -22,18 +22,21 @@ function MenuSider(props) {
                         <span className="nav-text">Home</span>
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="/admin/menu-web">
-                    <Link to={"/admin/menu-web"}>
-                        <Icon type="menu" />
-                        <span className="nav-text">Menu Web</span>
-                    </Link>
-                </Menu.Item>
+             
                 <Menu.Item key="/admin/users">
                     <Link to={"/admin/users"}>
                         <Icon type="user" />
                         <span className="nav-text">Usuarios</span>
                     </Link>
                 </Menu.Item>
+
+                <Menu.Item key="/admin/menu">
+                    <Link to={"/admin/menu"}>
+                        <Icon type="menu" />
+                        <span className="nav-text">Menu Web</span>
+                    </Link>
+                </Menu.Item>
+                
             </Menu>
         </Sider>
     );
