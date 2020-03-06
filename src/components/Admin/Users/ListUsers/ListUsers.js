@@ -12,6 +12,7 @@ import {
 import noAvatar from '../../../../assets/img/png/noPicture.png';
 import Modal from '../../../Modal';
 import EditUserForm from '../EditUserForm';
+import AddUserForm from '../AddUserForm';
 
 // Importamos los servicios
 import { getAvatarApi, activateUserApi, deleteUserApi } from '../../../../api/user';
@@ -32,10 +33,12 @@ export default function ListUsers(props) {
         setIsVisibleModal(true);
         setModalTitle('Creando nuevo usuario');
         setModalContent(
-            <div>
-                Formulario creación nuevo usuario
-            </div>
+            <AddUserForm
+                setIsVisibleModal={setIsVisibleModal}
+                setReloadUser={setReloadUser}
+            />
         );
+
     }
 
     return (

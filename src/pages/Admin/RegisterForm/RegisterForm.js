@@ -82,9 +82,7 @@ export default function RegisterForm() {
                 const result = signUpApi(inputs);
                 
                 result.then( response => {
-                    console.log(response.ok);
                     if (response.ok){
-                        console.log('correctamente');
                         notification['success']({
                             message: response.message
                         });

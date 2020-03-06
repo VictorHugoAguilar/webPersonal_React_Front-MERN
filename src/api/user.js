@@ -18,7 +18,6 @@ export function signUpApi(data) {
         })
         .then(result => {
             if (result.ok) {
-                console.log(result.message);
                 return result;
             }
             console.error(result.messageMongo.errmsg);
@@ -193,6 +192,30 @@ export function deleteUserApi(token, userId){
             Authorization: token
         }
     };
+    return fetch(url, params)
+    .then(response => {
+        return response.json();
+    })
+    .then(result => {
+        return result.message;
+    })
+    .catch(err => {
+        return err.message;
+    });
+}
+
+export function singUpAdminApi(token, data){
+    const url = `${basePath}${apiVersion}/sign-up-admin`;
+
+    const params = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify(data)
+    }
+
     return fetch(url, params)
     .then(response => {
         return response.json();
