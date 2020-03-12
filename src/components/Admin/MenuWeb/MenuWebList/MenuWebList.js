@@ -9,6 +9,8 @@ import AddMenuWebForm from '../../../../components/Admin/MenuWeb/AddMenuWebForm'
 import { updateMenuApi, activateMenuApi } from '../../../../api/menu';
 import { getAccessTokenApi } from '../../../../api/auth';
 
+import EditMenuWebForm from '../EditMenuWebForm';
+
 
 import './MenuWebList.scss';
 const { confirm } = ModalAntd;
@@ -25,7 +27,7 @@ export default function MenuWebList(props) {
 
         Array.prototype.forEach.call(menu, item => {
             listItemArray.push({
-                content: <MenuItem item={item} activateMenu={activateMenu} />
+                content: <MenuItem item={item} activateMenu={activateMenu} editMenuWebModal={editMenuWebModal} />
             })
         })
         setListItems(listItemArray);
@@ -74,6 +76,20 @@ export default function MenuWebList(props) {
         );
     };
 
+    const editMenuWebModal = menu => {
+        setIsVisibleModal(true);
+        setModalTitle( `Editando menú ${menu.title} `);
+        setModalContent(
+            <div>
+                <EditMenuWebForm 
+                    setIsVisibleModal={setIsVisibleModal}
+                    setReloadMenuWeb={setReloadMenuWeb}
+                    menu= { menu }
+                />
+            </div>
+        );
+    }
+
     return (
         <div className="menu-web-list">
             <div className="menu-web-list__header">
@@ -103,14 +119,14 @@ export default function MenuWebList(props) {
 }
 
 function MenuItem(props) {
-    const { item, activateMenu } = props;
+    const { item, activateMenu , editMenuWebModal} = props;
 
     return (
         <List.Item
             actions={
                 [
                     <Switch defaultChecked={item.active} onChange={e => activateMenu(item, e)} />,
-                    <Button type="primary">
+                    <Button type="primary" onClick={ () => editMenuWebModal(item)}>
                         <Icon type="edit"></Icon>
                     </Button>,
                     <Button type="danger">
