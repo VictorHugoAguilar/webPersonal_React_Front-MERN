@@ -6,7 +6,7 @@ import Modal from '../../../Modal';
 import AddMenuWebForm from '../../../../components/Admin/MenuWeb/AddMenuWebForm';
 
 // Importar api para conectar con el back
-import { updateMenuApi, activateMenuApi } from '../../../../api/menu';
+import { updateMenuApi, activateMenuApi, deleteMenuApi } from '../../../../api/menu';
 import { getAccessTokenApi } from '../../../../api/auth';
 
 import EditMenuWebForm from '../EditMenuWebForm';
@@ -27,7 +27,12 @@ export default function MenuWebList(props) {
 
         Array.prototype.forEach.call(menu, item => {
             listItemArray.push({
-                content: <MenuItem item={item} activateMenu={activateMenu} editMenuWebModal={editMenuWebModal} />
+                content: <MenuItem 
+                            item={item} 
+                            activateMenu={activateMenu} 
+                            editMenuWebModal={editMenuWebModal} 
+                            deleteMenuWeb = { deleteMenuWeb}
+                        />
             })
         })
         setListItems(listItemArray);
@@ -90,6 +95,32 @@ export default function MenuWebList(props) {
         );
     }
 
+    const deleteMenuWeb = menu => {
+        const accessToken = getAccessTokenApi();
+
+        confirm({
+            title: "Eliminando el menu",
+            content: `¿Estas seguro de que quieres eliminar el menu ${ menu.title}?`,
+            onText: "Eliminar",
+            onType: 'Danger',
+            cancelText: "Cancelar",
+            onOk() {
+                deleteMenuApi(accessToken, menu._id)
+                    .then( response => {
+                        notification['success']({
+                            message: response.message
+                        });
+                        setReloadMenuWeb(true);
+                    })
+                    .catch( err => {
+                        notification['error']({
+                            message: err.message
+                        });
+                    });
+            }
+        });
+    };
+
     return (
         <div className="menu-web-list">
             <div className="menu-web-list__header">
@@ -119,7 +150,7 @@ export default function MenuWebList(props) {
 }
 
 function MenuItem(props) {
-    const { item, activateMenu , editMenuWebModal} = props;
+    const { item, activateMenu , editMenuWebModal, deleteMenuWeb} = props;
 
     return (
         <List.Item
@@ -129,7 +160,7 @@ function MenuItem(props) {
                     <Button type="primary" onClick={ () => editMenuWebModal(item)}>
                         <Icon type="edit"></Icon>
                     </Button>,
-                    <Button type="danger">
+                    <Button type="danger" onClick={ () => deleteMenuWeb(item)}>
                         <Icon type="delete"></Icon>
                     </Button>
                 ]
