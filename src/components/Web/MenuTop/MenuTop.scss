@@ -1,0 +1,26 @@
+@import '../../../scss/index.scss';
+.menu-top {
+    padding: 10px !important;
+    position: sticky;
+    top: 0;
+    background-color: $background-dark-web !important;
+    border: 0 !important;
+    display: flex;
+    align-items: center;
+    li {
+        border: 0 !important;
+        a {
+            color: #fff !important;
+            font-weight: bold;
+            &:hover {
+                color: $primary-color !important;
+            }
+        }
+    }
+    &__logo {
+        padding: 10px;
+        img {
+            width: 200px;
+        }
+    }
+}
