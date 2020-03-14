@@ -61,9 +61,9 @@ export default function MenuWebList(props) {
 
         sortedList.forEach(item => {
             const { _id } = item.content.props.item;
-            const { order } = item.rank;
+            const  order  = item.rank;
             updateMenuApi(accessToken, _id, { order })
-                .then(result => console.log(result.message))
+                .then(result => console.log('ACTUALIZADO', result.message))
                 .catch(err => console.error(err.message))
         });
     };
