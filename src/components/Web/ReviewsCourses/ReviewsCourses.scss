@@ -1,0 +1,51 @@
+@import '../../../scss/index.scss';
+.reviews-courses {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    &__title {
+        text-align: center;
+        margin-bottom: 20px;
+        h2 {
+            color: $font-light;
+            font-size: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .row-card {
+        .ant-col {
+            padding: 20px !important;
+        }
+    }
+    &__card {
+        height: 400px;
+        margin: 15px !important;
+        border: 0px !important;
+        background-color: transparent !important;
+        p {
+            text-align: justify;
+            font-size: 15px;
+            color: $primary-color-dark;
+        }
+        .ant-card-meta {
+            display: flex;
+            align-items: center;
+            line-height: 1;
+            margin-top: 20px;
+            .ant-card-meta-avatar {
+                .ant-avatar {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+        .ant-card-meta-detail {
+            .ant-card-meta-title {
+                color: $primary-color-light;
+            }
+            .ant-card-meta-description {
+                color: $primary-color-dark;
+            }
+        }
+    }
+}
