@@ -6,8 +6,6 @@ import perfil1Image from '../../../assets/img/jpg/perfil1.jpg';
 import perfil2Image from '../../../assets/img/jpg/perfil2.jpg';
 import perfil3Image from '../../../assets/img/jpg/perfil3.jpg';
 
-
-
 import './ReviewsCourses.scss';
 
 export default function ReviewsCourses() {

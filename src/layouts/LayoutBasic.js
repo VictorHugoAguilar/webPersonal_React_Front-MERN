@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
 // importamos los compoenentes
-import MenuTop from '../components/Web/MenuTop'
+import MenuTop from '../components/Web/MenuTop';
+import Footer  from '../components/Web/Footer';
 
 import './LayoutBasic.scss';
 
 export default function LayoutBasic(props) {
-
     const { routes } = props;
-    const { Footer } = Layout;
 
     return (
         <Fragment>
@@ -23,7 +22,7 @@ export default function LayoutBasic(props) {
                 <Col lg={4} />
             </Row>
             <LoadRutes routes={routes} />
-            <Footer> Victor Hugo Aguilar Aguilar  © </Footer>
+            <Footer />
         </Fragment>
     );
 };
