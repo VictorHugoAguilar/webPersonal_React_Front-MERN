@@ -31,3 +31,16 @@ function removeClassErrorSuccess(inputData) {
     inputData.classList.remove('success');
     inputData.classList.remove('error');
 }
+
+
+export function emailValidate(inputData) {
+    // eslint-disable-next-line
+    const emailValid = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+    const resultValidation = emailValid.test(inputData);
+    if (resultValidation) {
+        return true;
+    } else {
+        return false;
+    }
+}
