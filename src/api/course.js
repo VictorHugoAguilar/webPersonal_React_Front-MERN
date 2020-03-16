@@ -46,6 +46,35 @@ export function getCourseDataUdemyApi(id) {
         });
 }
 
+export function deleteCourseApi (token, id){
+    const url = `${basePath}${apiVersion}/delete-course/${id}`;
+
+    const params = {
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+    };
+
+    return fetch(url, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {
+            if (result.ok) {
+                return result;
+            }
+            return result;
+        })
+        .catch(error => {
+            console.error('error', error)
+            return error;
+        })
+
+
+}
+
 export function addCourse(token, data) {
     const url = `${basePath}${apiVersion}/get-menus`;
 
