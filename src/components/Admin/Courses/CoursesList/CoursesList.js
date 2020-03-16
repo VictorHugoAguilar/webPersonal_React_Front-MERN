@@ -3,6 +3,9 @@ import { List, Button, Icon, Modal as ModalAntd, notification, message } from 'a
 import DragSortableList from 'react-drag-sortable';
 import Modal from '../../../Modal';
 
+// Importamos los componentes
+import AddEditCourseForm from '../AddEditCourseForm';
+
 // importamos las api de conexion con el server
 import { getCourseDataUdemyApi, deleteCourseApi } from '../../../../api/course';
 import { getAccessTokenApi } from '../../../../api/auth';
@@ -26,11 +29,21 @@ export default function CoursesList(props) {
             });
         });
         setListCourses(listCourseArray);
-        setReloadCourses(true);
     }, [courses]);
 
     const onSort = (sortedList, dropEvent) => {
         console.log(sortedList);
+    }
+
+    const addCourseModel = () => {
+        setIsVisibleModal(true);
+        setModalTitle('Creando nuevo curso');
+        setModalContent(
+            <AddEditCourseForm 
+                setIsVisibleModal={setIsVisibleModal}
+                setReloadCourses={setReloadCourses}
+            />
+        );
     }
 
     const deleteCourse = course => {
@@ -56,13 +69,12 @@ export default function CoursesList(props) {
                     });
             }
         });
-
     }
 
     return (
         <div className="courses-list">
             <div className="courses-list__header">
-                <Button type="primary" onClick={() => { console.log('creando un nuevo curso') }}>
+                <Button type="primary" onClick={ addCourseModel }>
                     <Icon type="plus" />
                     Nuevo curso
                 </Button>
@@ -76,6 +88,13 @@ export default function CoursesList(props) {
                 }
                 <DragSortableList items={listCourses} onSort={onSort} type="vertical" />
             </div>
+            <Modal 
+                title={modalTitle}
+                isVisible={isVisibleModal}
+                setIsVisible={setIsVisibleModal}
+            >
+                { modalContent}
+            </Modal>
         </div>
     );
 }

@@ -75,12 +75,12 @@ export function deleteCourseApi (token, id){
 
 }
 
-export function addCourse(token, data) {
-    const url = `${basePath}${apiVersion}/get-menus`;
+export function addCourseApi(token, course) {
+    const url = `${basePath}${apiVersion}/add-course`;
 
     const params = {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(course),
         headers: {
             "Content-Type": "application/json",
             Authorization: token
@@ -96,7 +96,6 @@ export function addCourse(token, data) {
             if (result.ok) {
                 return result;
             }
-            console.error(result.messageMongo.errmsg);
             return result;
         })
         .catch(error => {
