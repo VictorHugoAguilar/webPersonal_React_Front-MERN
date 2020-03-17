@@ -7,7 +7,7 @@ import Modal from '../../../Modal';
 import AddEditCourseForm from '../AddEditCourseForm';
 
 // importamos las api de conexion con el server
-import { getCourseDataUdemyApi, deleteCourseApi } from '../../../../api/course';
+import { getCourseDataUdemyApi, deleteCourseApi, updateCourseApi } from '../../../../api/course';
 import { getAccessTokenApi } from '../../../../api/auth';
 
 import './CoursesList.scss';
@@ -25,23 +25,48 @@ export default function CoursesList(props) {
         const listCourseArray = [];
         courses.forEach(course => {
             listCourseArray.push({
-                content: <Course course={course} deleteCourse={deleteCourse} />
+                content:
+                    <Course
+                        course={course}
+                        deleteCourse={deleteCourse}
+                        editCourseModal={editCourseModal}
+                    />
             });
         });
         setListCourses(listCourseArray);
     }, [courses]);
 
     const onSort = (sortedList, dropEvent) => {
-        console.log(sortedList);
+        const accessToken = getAccessTokenApi();
+        console.log(sortedList)
+        sortedList.forEach(item => {
+            const { _id } = item.content.props.course;
+            const order = item.rank;
+            updateCourseApi(accessToken, _id, { order })
+                .then(response => { console.warn(response.message) })
+                .catch(err => { console.error(err.message) })
+        });
     }
 
     const addCourseModel = () => {
         setIsVisibleModal(true);
         setModalTitle('Creando nuevo curso');
         setModalContent(
-            <AddEditCourseForm 
+            <AddEditCourseForm
                 setIsVisibleModal={setIsVisibleModal}
                 setReloadCourses={setReloadCourses}
+            />
+        );
+    }
+
+    const editCourseModal = course => {
+        setIsVisibleModal(true);
+        setModalTitle('Editando curso');
+        setModalContent(
+            <AddEditCourseForm
+                setIsVisibleModal={setIsVisibleModal}
+                setReloadCourses={setReloadCourses}
+                course={course}
             />
         );
     }
@@ -74,7 +99,7 @@ export default function CoursesList(props) {
     return (
         <div className="courses-list">
             <div className="courses-list__header">
-                <Button type="primary" onClick={ addCourseModel }>
+                <Button type="primary" onClick={addCourseModel}>
                     <Icon type="plus" />
                     Nuevo curso
                 </Button>
@@ -84,16 +109,16 @@ export default function CoursesList(props) {
                     listCourses.length === 0 && (
                         <h2 style={{ textAlign: "center", margin: 0 }} >
                             No tiene cursos creados aún
-                    </h2>)
+                        </h2>)
                 }
                 <DragSortableList items={listCourses} onSort={onSort} type="vertical" />
             </div>
-            <Modal 
+            <Modal
                 title={modalTitle}
                 isVisible={isVisibleModal}
                 setIsVisible={setIsVisibleModal}
             >
-                { modalContent}
+                {modalContent}
             </Modal>
         </div>
     );
@@ -101,14 +126,14 @@ export default function CoursesList(props) {
 
 
 function Course(props) {
-    const { course, deleteCourse } = props;
+    const { course, deleteCourse, editCourseModal } = props;
     const [courseData, setCourseData] = useState(null);
 
     useEffect(() => {
         getCourseDataUdemyApi(course.idCourse).then(response => {
             if (response.code !== 200) {
                 notification['warning']({
-                    message: response.data.detail
+                    message: `No se ha podido recuperar el curso ${course.idCourse}`
                 });
             }
             setCourseData(response.data);
@@ -122,7 +147,7 @@ function Course(props) {
     return (
         <List.Item
             actions={[
-                <Button type="primary" onClick={() => console.log('Editar curso')}>
+                <Button type="primary" onClick={() => editCourseModal(course)}>
                     <Icon type="edit" />
                 </Button>,
                 <Button type="danger" onClick={() => deleteCourse(course)}>

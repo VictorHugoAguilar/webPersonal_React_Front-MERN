@@ -15,9 +15,6 @@ export function getCoursesApi() {
             return response.json();
         })
         .then(result => {
-            if (result.ok) {
-                return result;
-            }
             return result;
         })
         .catch(error => {
@@ -46,7 +43,7 @@ export function getCourseDataUdemyApi(id) {
         });
 }
 
-export function deleteCourseApi (token, id){
+export function deleteCourseApi(token, id) {
     const url = `${basePath}${apiVersion}/delete-course/${id}`;
 
     const params = {
@@ -62,9 +59,6 @@ export function deleteCourseApi (token, id){
             return response.json();
         })
         .then(result => {
-            if (result.ok) {
-                return result;
-            }
             return result;
         })
         .catch(error => {
@@ -93,9 +87,31 @@ export function addCourseApi(token, course) {
             return response.json();
         })
         .then(result => {
-            if (result.ok) {
-                return result;
-            }
+            return result;
+        })
+        .catch(error => {
+            console.error('error', error)
+            return error;
+        })
+}
+
+export function updateCourseApi(token, id, course) {
+    const url = `${basePath}${apiVersion}/update-course/${id}`;
+
+    const params = {
+        method: 'PUT',
+        body: JSON.stringify(course),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+    };
+
+    return fetch(url, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {
             return result;
         })
         .catch(error => {

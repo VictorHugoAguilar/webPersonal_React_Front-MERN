@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Icon, Input, Button, notification, message } from 'antd';
 
 // importamos las apis
 import { getAccessTokenApi } from '../../../../api/auth';
-import { addCourseApi } from '../../../../api/course';
+import { addCourseApi, updateCourseApi } from '../../../../api/course';
 
 import './AddEditCourseForm.scss';
 
 export default function AddEditCourseForm(props) {
     const { setIsVisibleModal, setReloadCourses, course } = props;
     const [courseData, setCourseData] = useState({});
+
+    useEffect(() => {
+        if (course) {
+            setCourseData(course);
+        }
+    }, [course])
 
     const addCourse = e => {
         e.preventDefault();
@@ -39,6 +45,25 @@ export default function AddEditCourseForm(props) {
 
     const updateCourse = e => {
         e.preventDefault();
+
+        const accessToken = getAccessTokenApi();
+
+        updateCourseApi(accessToken, course._id, courseData)
+            .then(response => {
+                const typeNotification = response.code === 200 ? 'success' : 'warning';
+                notification[typeNotification]({
+                    message: response.message
+                });
+                setIsVisibleModal(false);
+                setReloadCourses(true);
+                setCourseData({});
+            })
+            .catch(err => {
+                notification['error']({
+                    message: err.message
+                })
+            });
+
 
     }
 
