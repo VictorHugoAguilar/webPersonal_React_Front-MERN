@@ -14,6 +14,8 @@ export default function AddEditCourseForm(props) {
     useEffect(() => {
         if (course) {
             setCourseData(course);
+        }else{
+            setCourseData({});
         }
     }, [course])
 
