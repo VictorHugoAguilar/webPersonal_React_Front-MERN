@@ -8,6 +8,8 @@ import AdminSingIn from '../pages/Admin/SignIn';
 import AdminUsers from '../pages/Admin/Users';
 import AdminMenuWeb from '../pages/Admin/MenuWeb';
 import AdminCourses from '../pages/Admin/Courses';
+import AdminBlog from '../pages/Admin/Blog';
+
 
 // Pages
 import Home from '../pages/Home';
@@ -27,6 +29,7 @@ const routes = [{
         { path: "/admin/users", component: AdminUsers, exact: true },
         { path: "/admin/menu", component: AdminMenuWeb, exact: true },
         { path: "/admin/courses", component: AdminCourses, exact: true },
+        { path: "/admin/blog", component: AdminBlog, exact: true },
         { path: "**", component: NotFound }
     ]
 },
