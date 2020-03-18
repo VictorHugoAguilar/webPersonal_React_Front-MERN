@@ -25,8 +25,6 @@ function Blog(props) {
 
     const { page = 1, limit = 10 } = queryString.parse(location.search);
 
-    console.log(posts);
-
     useEffect(() => {
         getPostsApi(limit, page)
             .then(response => {
@@ -59,7 +57,7 @@ function Blog(props) {
                 </Button>
             </div>
             <hr />
-            <PostsList posts={posts} />
+            <PostsList posts={posts} setReloadPosts={setReloadPosts}/>
             <Pagination posts={posts} history={history} location={location} />
 
             <Modal
