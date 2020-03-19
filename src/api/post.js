@@ -42,3 +42,4 @@ export function deletePostApi(id, token) {
             return error;
         })
 }
+
