@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Spin, notification } from 'antd';
+import { Helmet } from 'react-helmet';
 import moment from 'moment';
 
 // Importamos los servicios Api
@@ -33,16 +34,22 @@ export default function PostInfo(props) {
     }
 
     return (
-        <div className="post-info">
-            <h1 className="post-info__title">{postInfo.title}</h1>
-            <div className="post-info__creatin-date">
-                {moment(postInfo.date).locale('es').format('LL')}
+        <Fragment>
+            <Helmet>
+                <title>Blog | Victor Hugo Aguilar Aguilar</title>
+                <meta name="description" content="Blog | Web sobre programación" data-react-helmet="true" />
+            </Helmet>
+            <div className="post-info">
+                <h1 className="post-info__title">{postInfo.title}</h1>
+                <div className="post-info__creatin-date">
+                    {moment(postInfo.date).locale('es').format('LL')}
+                </div>
+                <div
+                    className="post-info__description"
+                    dangerouslySetInnerHTML={{ __html: postInfo.description }}
+                />
             </div>
-            <div
-                className="post-info__description"
-                dangerouslySetInnerHTML={{ __html: postInfo.description }}
-            />
-        </div>
+        </Fragment>
     );
 
 }
