@@ -41,7 +41,7 @@ export default function PostInfo(props) {
             </Helmet>
             <div className="post-info">
                 <h1 className="post-info__title">{postInfo.title}</h1>
-                <div className="post-info__creatin-date">
+                <div className="post-info__creation-date">
                     {moment(postInfo.date).locale('es').format('LL')}
                 </div>
                 <div
