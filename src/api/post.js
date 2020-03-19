@@ -1,6 +1,5 @@
 import { basePath, apiVersion } from './config';
 
-
 export function getPostsApi(limit, page) {
     const url = `${basePath}${apiVersion}/get-posts?limit=${limit}&page=${page}`;
 
@@ -44,7 +43,7 @@ export function deletePostApi(id, token) {
 }
 
 
-export function addPostApi(token, post){
+export function addPostApi(token, post) {
     const url = `${basePath}${apiVersion}/add-post`;
 
     const params = {
@@ -68,7 +67,7 @@ export function addPostApi(token, post){
         })
 }
 
-export function updatePostApi(token, id, data){
+export function updatePostApi(token, id, data) {
     const url = `${basePath}${apiVersion}/update-post/${id}`;
 
     const params = {
@@ -91,4 +90,28 @@ export function updatePostApi(token, id, data){
             return error;
         })
 }
+
+export function getPostApi(url) {
+    const urlGetter = `${basePath}${apiVersion}/get-post/${url}`;
+
+    const params = {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    return fetch(urlGetter, params)
+        .then(response => {
+            return response.json();
+        })
+        .then(result => {
+            return result;
+        })
+        .catch(error => {
+            return error;
+        })
+}
+
+
 

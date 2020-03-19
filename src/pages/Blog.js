@@ -4,6 +4,7 @@ import { useParams, withRouter } from 'react-router-dom';
 
 // importamos los componentes
 import PostsListWeb from '../components/Web/Blog/PostsListWeb';
+import PostInfo from '../components/Web/Blog/PostInfo';
 
 function Blog(props) {
     const { location, history } = props;
@@ -12,19 +13,24 @@ function Blog(props) {
     return (
         <Row>
             <Col md={4} />
-            
+
             <Col md={16}>
                 {url ?
-                    (<h2>Es un post</h2>)
+                    (
+                        <PostInfo url={url} />
+                    )
                     :
-                    (<PostsListWeb
-                        location={location}
-                        history={history}
-                    />)}
+                    (
+                        <PostsListWeb
+                            location={location}
+                            history={history}
+                        />
+                    )
+                }
             </Col>
 
             <Col md={4} />
-            
+
         </Row>
     );
 }

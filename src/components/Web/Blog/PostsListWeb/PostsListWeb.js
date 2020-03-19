@@ -51,8 +51,8 @@ export default function PostsListWeb(props) {
                 history={history}
             />
         </div>
-    )
-}//  post => { console.log(post) } 
+    );
+}
 
 function Post(props) {
     const { post } = props;
