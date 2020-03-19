@@ -10,6 +10,7 @@ import { getPostsApi } from '../../../api/post';
 // Importamos Componentes
 import PostsList from '../../../components/Admin/Blog/PostsList';
 import Pagination from '../../../components/Pagination';
+import AddEditPostForm from '../../../components/Admin/Blog/AddEditPost';
 
 import Modal from '../../../components/Modal';
 
@@ -24,6 +25,7 @@ function Blog(props) {
     const [reloadPosts, setReloadPosts] = useState(false);
 
     const { page = 1, limit = 10 } = queryString.parse(location.search);
+
 
     useEffect(() => {
         getPostsApi(limit, page)
@@ -44,6 +46,18 @@ function Blog(props) {
         setReloadPosts(false);
     }, [page, reloadPosts]);
 
+    const addPost = () => {
+        setIsVisibleModal(true);
+        setModalTitle("Creando nuevo post");
+        setModalContent(
+            <AddEditPostForm
+                setIsVisibleModal={setIsVisibleModal} 
+                setReloadPosts={setReloadPosts}
+                post={null} 
+            />
+        );
+    }
+
     if (!posts) {
         return null;
     }
@@ -51,13 +65,13 @@ function Blog(props) {
     return (
         <div className="blog">
             <div className="blog__add-post">
-                <Button type="primary">
+                <Button type="primary" onClick={addPost}>
                     <Icon type="plus" />
                     Nuevo Post
                 </Button>
             </div>
             <hr />
-            <PostsList posts={posts} setReloadPosts={setReloadPosts}/>
+            <PostsList posts={posts} setReloadPosts={setReloadPosts} />
             <Pagination posts={posts} history={history} location={location} />
 
             <Modal
@@ -65,7 +79,9 @@ function Blog(props) {
                 isVisible={isVisibleModal}
                 setIsVisible={setIsVisibleModal}
                 width="75%"
-            />
+            >
+                {modalContent}
+            </Modal>
         </div>
     );
 }
