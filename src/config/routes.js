@@ -15,6 +15,7 @@ import AdminBlog from '../pages/Admin/Blog';
 import Home from '../pages/Home';
 import Contact from '../pages/Contact';
 import Courses from '../pages/Courses';
+import Blog from '../pages/Blog';
 
 // Otros
 import NotFound from '../pages/NotFound';
@@ -41,6 +42,8 @@ const routes = [{
         { path: "/", component: Home, exact: true },
         { path: "/contact", component: Contact, exact: true },
         { path: "/courses", component: Courses, exact: true },
+        { path: "/blog", component: Blog, exact: true },
+        { path: "/blog/:url", component: Blog, exact: true },
         { path: "**", component: NotFound }
     ]
 }
