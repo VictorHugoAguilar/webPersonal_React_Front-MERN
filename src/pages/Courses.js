@@ -32,7 +32,7 @@ export default function Courses() {
 
     return (
         <Row>
-            <Col md={4} />>
+            <Col md={4} />
             <Col md={16}>
                 <PresentationCourses />
                 {!courses ? (
@@ -44,7 +44,7 @@ export default function Courses() {
                         <CoursesList courses={courses} />
                     )}
             </Col>
-            <Col md={4} />>
+            <Col md={4} />
         </Row>
     );
 }
