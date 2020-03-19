@@ -14,7 +14,6 @@ import './MenuTop.scss';
 export default function MenuTop() {
 
     const [menuData, setMenuData] = useState([]);
-    console.log(menuData);
     useEffect(() => {
         getMenuApi()
             .then(response => {

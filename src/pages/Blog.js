@@ -13,7 +13,6 @@ function Blog(props) {
     return (
         <Row>
             <Col md={4} />
-
             <Col md={16}>
                 {url ?
                     (
@@ -28,9 +27,7 @@ function Blog(props) {
                     )
                 }
             </Col>
-
             <Col md={4} />
-
         </Row>
     );
 }

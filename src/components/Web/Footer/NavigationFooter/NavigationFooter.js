@@ -22,13 +22,13 @@ export default function NavigationFooter() {
     );
 }
 
-function RenderListLeft(){
+function RenderListLeft() {
     return (
         <ul>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="book" /> Cursos Online
-                </a>
+                </Link>
             </li>
             <li>
                 <Link to="/contact">
@@ -36,41 +36,41 @@ function RenderListLeft(){
                 </Link>
             </li>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="database" /> Base de Datos
-                </a>
+                </Link>
             </li>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="right" /> Politica de privacidad
-                </a>
+                </Link>
             </li>
         </ul>
     );
 }
 
-function RenderListRight(){
+function RenderListRight() {
     return (
         <ul>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="hdd" /> Sistemas / Servidores
-                </a>
+                </Link>
             </li>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="appstore" /> CMS
-                </a>
+                </Link>
             </li>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="user" /> Porfolio
-                </a>
+                </Link>
             </li>
             <li>
-                <a href="#">
+                <Link to="/contact">
                     <Icon type="right" /> Politica de cookies
-                </a>
+                </Link>
             </li>
         </ul>
     );

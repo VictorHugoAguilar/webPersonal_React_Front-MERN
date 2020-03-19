@@ -32,21 +32,19 @@ export default function Courses() {
 
     return (
         <Row>
-            <Col md={4}>
-            </Col>
+            <Col md={4} />>
             <Col md={16}>
                 <PresentationCourses />
                 {!courses ? (
                     <Spin
-                        tipe="Cargando cursos"
+                        tipe="Cargando cursos..."
                         style={{ textAlign: "center", width: "100%", padding: '20px' }}
                     />
                 ) : (
                         <CoursesList courses={courses} />
                     )}
             </Col>
-            <Col md={4}>
-            </Col>
+            <Col md={4} />>
         </Row>
     );
 }

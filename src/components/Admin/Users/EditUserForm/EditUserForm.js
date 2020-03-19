@@ -51,6 +51,7 @@ export default function EditUserForm(props) {
                 avatar: avatar.file
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [avatar]);
 
     const updateUser = e => {
@@ -64,7 +65,7 @@ export default function EditUserForm(props) {
                     message: 'Las contraseñas tienen que ser iguales.'
                 });
                 return;
-            }else{
+            } else {
                 delete userUpdate.repeatPassword;
             }
         }

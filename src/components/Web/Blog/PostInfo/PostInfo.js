@@ -15,7 +15,6 @@ export default function PostInfo(props) {
     useEffect(() => {
         getPostApi(url)
             .then(response => {
-                console.log(response);
                 if (response.code !== 200) {
                     notification['error']({ message: response.message });
                 } else {

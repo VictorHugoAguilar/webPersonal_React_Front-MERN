@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Icon, Input, Select, Button, Row, Col, notification } from 'antd';
-import { singUpAdminApi, signUpApi } from '../../../../api/user';
+import { singUpAdminApi  } from '../../../../api/user';
 import { getAccessTokenApi } from '../../../../api/auth';
 
 import './AddUserForm.scss';

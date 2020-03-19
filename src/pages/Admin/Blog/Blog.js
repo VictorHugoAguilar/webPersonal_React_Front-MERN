@@ -43,6 +43,7 @@ function Blog(props) {
                 })
             });
         setReloadPosts(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, reloadPosts]);
 
     const addPost = () => {
@@ -67,9 +68,6 @@ function Blog(props) {
                 post={post} 
             />
         );
-
-
-
     }
 
     if (!posts) {

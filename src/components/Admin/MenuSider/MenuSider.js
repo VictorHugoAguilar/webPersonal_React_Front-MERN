@@ -5,7 +5,6 @@ import { Menu, Icon, Layout } from 'antd';
 import './MenuSider.scss';
 
 function MenuSider(props) {
-    // console.log(props)
     const { Sider } = Layout;
     const { menuCollapsed, location } = props;
 

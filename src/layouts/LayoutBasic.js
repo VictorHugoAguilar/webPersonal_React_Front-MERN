@@ -28,7 +28,6 @@ export default function LayoutBasic(props) {
 };
 
 function LoadRutes(props) {
-    // console.log(props);
     const { routes } = props;
     return (
         <Switch>

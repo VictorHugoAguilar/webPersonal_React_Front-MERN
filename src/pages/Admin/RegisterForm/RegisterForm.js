@@ -23,7 +23,6 @@ export default function RegisterForm() {
     })
 
     const inputValidation = e => {
-        // console.log('validando');
         const { type, name } = e.target;
         if (type === 'email') {
             setFormValid({
@@ -46,7 +45,6 @@ export default function RegisterForm() {
     }
 
     const changeForm = e => {
-        // console.log(e.target.value);
         if (e.target.name === 'privacyPolicy') {
             setInputs({
                 ...inputs,

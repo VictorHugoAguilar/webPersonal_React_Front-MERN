@@ -11,7 +11,6 @@ import AdminSignIn from '../pages/Admin/SignIn/SignIn';
 import "./LayoutAdmin.scss";
 
 export default function LayoutAdmin(props) {
-    // console.log('PROPS', props);
     const { routes } = props;
     const [menuCollapsed, setMenuCollapsed] = useState(false);
     const { Header, Footer, Content } = Layout;
@@ -48,7 +47,6 @@ export default function LayoutAdmin(props) {
 
 function LoadRutes(props) {
     const { routes } = props;
-    // console.log(props);
     return (
         <Switch>
             {routes.map((route, index) => (

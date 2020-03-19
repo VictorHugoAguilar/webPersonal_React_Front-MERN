@@ -54,7 +54,7 @@ export default function PostsList(props) {
 }
 
 function Post(props) {
-    const { post, setReloadPosts, deletePost, editPost } = props;
+    const { post, deletePost, editPost } = props;
 
     return (
         <List.Item

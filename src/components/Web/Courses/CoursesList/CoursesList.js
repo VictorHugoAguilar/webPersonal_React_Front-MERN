@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Card, Button, Rate, notification, message } from 'antd';
+import { Row, Col, Card, Button, Rate, notification } from 'antd';
 
 // Importamos los servicios de la api
 import { getCourseDataUdemyApi } from '../../../../api/course';
@@ -48,6 +48,7 @@ function Course(props) {
                     message: 'Error en el servidor.'
                 })
             });
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [course]);
 
     const mounturl = url => {
@@ -62,7 +63,7 @@ function Course(props) {
     }
 
     return (
-        <a href={urlCourse} target="_blank" rel="noopener noreferre">
+        <a href={urlCourse} target="_blank" rel="noopener noreferrer">
             <Card
                 cover={<img src={courseInfo.image_480x270} alt={course.title} />}
             >

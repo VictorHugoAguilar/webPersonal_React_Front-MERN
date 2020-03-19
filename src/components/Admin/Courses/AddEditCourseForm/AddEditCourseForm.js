@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Icon, Input, Button, notification, message } from 'antd';
+import { Form, Icon, Input, Button, notification } from 'antd';
 
 // importamos las apis
 import { getAccessTokenApi } from '../../../../api/auth';

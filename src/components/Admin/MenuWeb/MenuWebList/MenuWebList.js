@@ -36,6 +36,7 @@ export default function MenuWebList(props) {
             })
         })
         setListItems(listItemArray);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [menu]);
 
 
@@ -63,7 +64,7 @@ export default function MenuWebList(props) {
             const { _id } = item.content.props.item;
             const  order  = item.rank;
             updateMenuApi(accessToken, _id, { order })
-                .then(result => console.log('ACTUALIZADO', result.message))
+                .then(result => console.warn('ACTUALIZADO', result.message))
                 .catch(err => console.error(err.message))
         });
     };

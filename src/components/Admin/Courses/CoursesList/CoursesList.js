@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, Button, Icon, Modal as ModalAntd, notification, message } from 'antd';
+import { List, Button, Icon, Modal as ModalAntd, notification } from 'antd';
 import DragSortableList from 'react-drag-sortable';
 import Modal from '../../../Modal';
 
@@ -34,11 +34,11 @@ export default function CoursesList(props) {
             });
         });
         setListCourses(listCourseArray);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [courses]);
 
     const onSort = (sortedList, dropEvent) => {
         const accessToken = getAccessTokenApi();
-        console.log(sortedList)
         sortedList.forEach(item => {
             const { _id } = item.content.props.course;
             const order = item.rank;

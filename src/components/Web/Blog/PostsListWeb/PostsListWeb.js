@@ -19,7 +19,6 @@ export default function PostsListWeb(props) {
     useEffect(() => {
         getPostsApi(10, page)
             .then(response => {
-                console.log(response)
                 if (response.code !== 200) {
                     notification['warning']({
                         message: response.message
@@ -56,8 +55,6 @@ export default function PostsListWeb(props) {
 
 function Post(props) {
     const { post } = props;
-
-    console.log(post);
 
     const day = moment(post.date).format("DD");
     const month = moment(post.date).format("MMMM");
