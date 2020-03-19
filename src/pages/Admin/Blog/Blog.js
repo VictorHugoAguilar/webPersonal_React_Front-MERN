@@ -26,7 +26,6 @@ function Blog(props) {
 
     const { page = 1, limit = 10 } = queryString.parse(location.search);
 
-
     useEffect(() => {
         getPostsApi(limit, page)
             .then(response => {
@@ -58,6 +57,21 @@ function Blog(props) {
         );
     }
 
+    const editPost = post => {
+        setIsVisibleModal(true);
+        setModalTitle("Editar post");
+        setModalContent(
+            <AddEditPostForm
+                setIsVisibleModal={setIsVisibleModal} 
+                setReloadPosts={setReloadPosts}
+                post={post} 
+            />
+        );
+
+
+
+    }
+
     if (!posts) {
         return null;
     }
@@ -71,9 +85,16 @@ function Blog(props) {
                 </Button>
             </div>
             <hr />
-            <PostsList posts={posts} setReloadPosts={setReloadPosts} />
-            <Pagination posts={posts} history={history} location={location} />
-
+            <PostsList 
+                    posts={posts}
+                    setReloadPosts={setReloadPosts}
+                    editPost={editPost}
+            />
+            <Pagination 
+                    posts={posts}
+                    history={history}
+                    location={location}
+             />
             <Modal
                 title={modalTitle}
                 isVisible={isVisibleModal}

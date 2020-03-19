@@ -12,7 +12,7 @@ import './PostsList.scss';
 const { confirm } = Modal;
 
 export default function PostsList(props) {
-    const { posts, setReloadPosts } = props;
+    const { posts, setReloadPosts, editPost } = props;
 
     const deletePost = post => {
         const accessToken = getAccessTokenApi();
@@ -41,14 +41,20 @@ export default function PostsList(props) {
         <div className="posts-list">
             <List
                 dataSource={posts.docs}
-                renderItem={post => <Post post={post} deletePost={deletePost} setReloadPosts={setReloadPosts} />}
+                renderItem={post => 
+                    <Post
+                         post={post}
+                         deletePost={deletePost} 
+                         setReloadPosts={setReloadPosts} 
+                         editPost={editPost}
+                    />}
             />
         </div>
     );
 }
 
 function Post(props) {
-    const { post, setReloadPosts, deletePost } = props;
+    const { post, setReloadPosts, deletePost, editPost } = props;
 
     return (
         <List.Item
@@ -60,7 +66,7 @@ function Post(props) {
                         <Icon type="eye" />
                     </Button>
                 </Link>,
-                <Button type="primary">
+                <Button type="primary" onClick={ () => editPost(post)}>
                     <Icon type="edit" />
                 </Button>,
                 <Button type="danger" onClick={() => deletePost(post)}  >
